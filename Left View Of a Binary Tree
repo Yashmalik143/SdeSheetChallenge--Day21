@@ -1,0 +1,38 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+void func(int level,vector<int>&ans,TreeNode<int> *root)
+{
+    if(!root) return;
+    if(level==ans.size())
+    {
+        ans.push_back(root->data);
+    }
+    func(level+1,ans,root->left); //hr level pe first wala hi element ans me push hoga
+    func(level+1,ans,root->right);
+    
+}
+vector<int> getLeftView(TreeNode<int> *root)
+{
+    //    Write your code here
+    
+    vector<int>ans;
+    func(0,ans,root);
+    return ans;
+}
